@@ -1,0 +1,35 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  &:after {
+    // background: url(https://hecun0000.github.io/Jcss/blur/1.jpg);
+    background: linear-gradient(to bottom,rgb(255, 255, 255), rgb(255, 255, 255)) ;
+    filter: blur(10px);
+    content: '';
+    position: absolute;
+    top: -30px;
+    bottom: -30px;
+    left: -30px;
+    right: -30px;
+    z-index: -1;
+  }
+  .h-menu {
+    width: 80px;
+    background: $main-color;
+  }
+  .h-main {
+    background: $layout-bg;
+    flex: 1;
+    // backdrop-filter: blur(5px);
+    overflow: hidden;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    flex-direction: column;
+    .app-main {
+      flex: 1;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>主数据平台(mdp)数据库规范说明</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.c22be399.css" as="style"><link rel="preload" href="/assets/js/app.a03e1373.js" as="script"><link rel="preload" href="/assets/js/2.6028f0b5.js" as="script"><link rel="preload" href="/assets/js/5.f3da4ffb.js" as="script"><link rel="prefetch" href="/assets/js/3.4414386c.js"><link rel="prefetch" href="/assets/js/4.97e37282.js"><link rel="prefetch" href="/assets/js/6.e10e4ef8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c22be399.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-exact-active router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="主数据平台-mdp-数据库规范说明"><a href="#主数据平台-mdp-数据库规范说明" class="header-anchor">#</a> 主数据平台(mdp)数据库规范说明</h1> <h2 id="命名规范"><a href="#命名规范" class="header-anchor">#</a> 命名规范</h2> <h3 id="命名总体原则"><a href="#命名总体原则" class="header-anchor">#</a> 命名总体原则</h3> <ul><li>整个命名的全长不得超过30个字符，要达到见名知意</li> <li>全部使用英文字符加下划线，不得使用中文或其他字符。有特殊情况允许使用末尾数字编号。例如：<code>t_order_waybill1</code>, <code>tl_order_waybill2</code> …</li> <li>命名名称来自于业务，全部采用英文单词</li> <li>英文单词过长可以采用通用的缩写。尽量表达出业务的含义</li> <li>如需要两个或两个以上的英文单词做标识名称，单词之间要用下划线连接</li> <li>名称全是由名词组成的，名词由大范围导小访问排序取名</li> <li>数据表、数据字段必须加入中文注释，说明其含意或用途</li> <li>禁止使用数据库保留字</li></ul> <h3 id="表命名"><a href="#表命名" class="header-anchor">#</a> 表命名</h3> <ol><li>主数据平台系统相关表命名<br>
+  统一以<code>mdp_</code>为前缀，格式为：<code>mdp_[模块标识]_[表功能标识]</code>。[模块标识]表示系统的功能。[表功能标识]标识该表含义相关的英文词。例如：表<code>mdp_base_metadata</code>表示<code>mdp</code>系统基础数据模块元数据信息表，表<code>mdp_job_syndatabasejob</code>表示<code>mdp</code>系统作业管理模块数据库类型作业详情表。</li> <li>其他系统基础数据表命名<br>
+  统一格式为：<code>[系统标识]_[表功能标识]</code>。[系统标识]表示所属系统，例如：<code>TL</code>表示天龙快递系统，<code>LB</code>表示鲁班快运系统，<code>YT</code>表示倚天系统等等。表``</li></ol> <h3 id="字段-域命名"><a href="#字段-域命名" class="header-anchor">#</a> 字段/域命名</h3> <p>  根据业务内容进行命名，不需要设定固定前缀。</p> <h2 id="设计规范-表设计"><a href="#设计规范-表设计" class="header-anchor">#</a> 设计规范(表设计)</h2> <ul><li>禁止使用外键约束，使用时用逻辑关联</li> <li>表必须备有主键、创建时间和修改时间三个字段，若同时有创建人、修改人字段更佳。数据第一次创建时，修改时间同创建时间，取当前时间</li> <li>若某表有其对应明细表，该表中常用信息应放置在主表中。例如：网点表与网点明细表，表中省市区信息放置在网点主表中，在使用时可以减少不必要的表关联，简化操作，节省资源，以提高效率。</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a03e1373.js" defer></script><script src="/assets/js/2.6028f0b5.js" defer></script><script src="/assets/js/5.f3da4ffb.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+/**
+ * 全局变量
+ * 命名规范 —— 遵守语义化命名：lg-大号、md-中号、base-基本号、sm-小号、mini-超小号
+ */
+
+$font-weight-base: 400;
+
+
+// 文字大小
+$font-size-lg: 18px;
+$font-size-md: 16px;
+$font-size-base: 14px;
+$font-size-sm: 12px;
+$font-size-mini: 10px;
+
+// 弹窗宽度大小
+$dialog-sm-width: 500px;
+$dialog-md-width: 800px;
+$dialog-lg-width: 1100px;
+
+// 文字颜色
+$color-important: #222222;
+$color-common: #606060;
+$color-desc: #909090;
+$color-disabled: #BFBFBF;
+
+// 提示颜色
+$color-error: #e6727c;
+$color-warn: #eea16a;
+$color-lighting: #9013FE;
+$color-primary: #0a9fc0;
+$color-success: #4bc9ac;
+
+$padding-common: 15px;
+
+// 背景色
+$page-bg-color: #f3f3f3;
+$border-color-common: #e4e4e4;
+
+
+$main-color: #0795a5;
+$menu-default-color: #306a77;
+$menu-active-color: #e6dad7;
+$layout-bg: #e9efed;
