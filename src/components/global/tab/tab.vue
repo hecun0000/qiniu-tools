@@ -23,7 +23,7 @@ export default {
         },
         {
           label: 'web',
-          value: 'img'
+          value: 'html'
         }
       ]
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="upload">
-    <tabs @toggle="handleTab" />
+    <tabs ref="tabs"/>
     <upload @upload="uploadFiles"/>
     <div class="he-form img-info">
       <span class="label">图片链接: </span>
@@ -11,6 +11,7 @@
 
 <script>
 import { openUrl } from '@/utils/tools'
+import { copyNotice } from '@/utils/copy'
 import { uploadQiniu } from '@/utils/qiniu'
 
 export default {
@@ -23,20 +24,8 @@ export default {
   methods: {
     async uploadFiles (files) {
       const res = await uploadQiniu(files)
-      console.log(res)
-    },
-    copySrc (item) {
-      var oInput = document.createElement('input')
-      oInput.value = item
-      document.body.appendChild(oInput)
-      oInput.select() // 选择对象
-      document.execCommand('Copy') // 执行浏览器复制命令
-      oInput.className = 'oInput'
-      oInput.style.display = 'none'
-      alert('复制成功')
-    },
-    handleTab (item) {
-      console.log(item)
+      const type = this.$refs.tabs.active
+      copyNotice(res, type)
     },
     openUrl
   }

@@ -4,12 +4,12 @@
         <div class="search-container">
           <input id="search" v-model="qeury"  placeholder="Search..." />
           <button class="icon" @click="filterData">
-            <i class="iconfont icon-search"></i>
+            <i class="iconfont icon-search" ></i>
           </button>
         </div>
     </div>
     <div class="img-container">
-      <water-fall :imgList='displayList'/>
+      <water-fall :imgList='displayList' v-if="reload"/>
     </div>
   </div>
 </template>
@@ -17,8 +17,8 @@
 <script>
 import { waterFall } from './components/'
 import { getImgList } from '../../utils/imgList'
-import { deepCopy, notification } from '../../utils/tools'
-import { copyPath } from '../../utils/copy'
+import { deepCopy } from '../../utils/tools'
+// import { copyPath } from '../../utils/copy'
 
 export default {
   name: 'user',
@@ -29,7 +29,8 @@ export default {
     return {
       imgList: [],
       displayList: [],
-      qeury: ''
+      qeury: '',
+      reload: true
     }
   },
   mounted () {
@@ -40,21 +41,24 @@ export default {
       const originData = getImgList()
       this.imgList = deepCopy(originData)
       this.displayList = deepCopy(originData)
-      console.log(this.displayList)
-      copyPath(this.displayList, 'markdown')
-      let option = {
-        title: '你订阅的《海贼王》更新了',
-        body: '《海贼王》已更新至第852集 激斗开幕 路飞VS卡塔库栗',
-        icon: '../static/hhw.ico',
-        href: 'https://www.iqiyi.com/v_19rqz6uit0.html'
-      }
-      let notice = notification(option, true)
-      console.log(notice)
+      // console.log(this.displayList)
+      // copyPath(this.displayList, 'markdown')
+      // let option = {
+      //   title: '你订阅的《海贼王》更新了',
+      //   body: '《海贼王》已更新至第852集 激斗开幕 路飞VS卡塔库栗',
+      //   icon: '../static/hhw.ico',
+      //   href: 'https://www.iqiyi.com/v_19rqz6uit0.html'
+      // }
+      // let notice = notification(option, true)
+      // console.log(notice)
     },
-    filterData () {
+    async filterData () {
+      this.reload = false
       this.displayList = this.imgList.filter(item => {
         return item.fileName.indexOf(this.qeury) > -1
       })
+      await this.$nextTick()
+      this.reload = true
       console.log(this.displayList, 'this.displayList')
     }
   }

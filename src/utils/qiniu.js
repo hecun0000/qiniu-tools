@@ -77,6 +77,7 @@ async function transformBase64 (files, bucket) {
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = function () {
+        console.log(this.result, 'dd')
         const base64 = this.result.replace(
           /^data:image\/(jpeg|png|gif);base64,/,
           ''
