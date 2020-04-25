@@ -4,21 +4,21 @@
     <ul>
       <li>
         <span class="label">AccessKey</span>
-        <input type="text" v-model="config.accessKey" :disabled="disabled"/>
+        <input :type="disabled? 'password' :'text'" v-model="config.accessKey" :disabled="disabled"/>
       </li>
       <li>
         <span class="label">SecretKey</span>
-        <input type="text" v-model="config.secretKey" :disabled="disabled"/>
+        <input :type="disabled? 'password' :'text'" v-model="config.secretKey" :disabled="disabled"/>
       </li>
       <li>
         <span class="label">域名</span>
-        <input type="text" v-model="config.domain" :disabled="disabled"/>
+        <input :type="disabled? 'password' :'text'" v-model="config.domain" :disabled="disabled"/>
       </li>
       <li>
         <span class="label">bucket</span>
-        <input type="text" v-model="config.bucket" :disabled="disabled"/>
+        <input :type="disabled? 'password' :'text'" v-model="config.bucket" :disabled="disabled"/>
       </li>
-      <li class="btn-row">
+      <li class="btn-row" v-if="disabled">
         <button class="he-button primary" @click="handleClick">重新填写</button>
       </li>
     </ul>
@@ -35,7 +35,7 @@ export default {
       config: {
         accessKey: 'HzPKzILsKZACzI12Bi-KTONKcoR5X2KyN03HbCLo',
         secretKey: 'k84p2iDti4t6MB1DIsy1MMPTttdl18Ws7NkfHmDb',
-        domain: 'https://img.hecun.site',
+        domain: 'https://static.hecun.site/',
         bucket: 'hecun'
       }
     }
@@ -54,6 +54,12 @@ export default {
   methods: {
     handleClick () {
       this.disabled = false
+      this.config = {
+        accessKey: '',
+        secretKey: '',
+        domain: '',
+        bucket: ''
+      }
     },
     getConfig () {
       this.config = getQiniuConfig()

@@ -3,8 +3,8 @@
     <tabs ref="tabs"/>
     <upload @upload="uploadFiles"/>
     <div class="he-form img-info">
-      <span class="label">图片链接: </span>
-      <span class="span-a" @click="openUrl('http://static.hecun.site/hecun.321c947a.jpg')">http://static.hecun.site/hecun.321c947a.jpg</span>
+      <!-- <span class="label">图片链接: </span>
+      <span class="span-a" @click="openUrl('http://static.hecun.site/hecun.321c947a.jpg')">http://static.hecun.site/hecun.321c947a.jpg</span> -->
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 import { openUrl } from '@/utils/tools'
 import { copyNotice } from '@/utils/copy'
 import { uploadQiniu } from '@/utils/qiniu'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'UploadBox',
@@ -21,9 +22,13 @@ export default {
       list: []
     }
   },
+  computed: {
+    ...mapGetters(['autoCopy'])
+  },
   methods: {
     async uploadFiles (files) {
       const res = await uploadQiniu(files)
+      if (!this.autoCopy) return
       const type = this.$refs.tabs.active
       copyNotice(res, type)
     },

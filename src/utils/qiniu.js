@@ -22,6 +22,7 @@ export function setQiniuConfig (config) {
  */
 export function getQiniuToken () {
   const { accessKey, secretKey, bucket, domain } = getQiniuConfig()
+  console.log({ accessKey, secretKey, bucket, domain })
   const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
   const options = {
     scope: bucket,
@@ -63,6 +64,7 @@ export async function uploadQiniu (files) {
   })
   // 将数据插入缓存
   insertQiniuList(result)
+  console.log(result)
   return result
 }
 

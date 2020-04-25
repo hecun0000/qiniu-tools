@@ -2,7 +2,7 @@
   <div class="common">
     <ul>
       <li @click='toggleCheck' class="check-item">
-        <span class="ant-checkbox" :class="{'ant-checkbox-checked': checked}" >
+        <span class="ant-checkbox" :class="{'ant-checkbox-checked': checked}">
           <input type="checkbox" class="ant-checkbox-input" value="">
           <span class="ant-checkbox-inner"></span>
         </span>
@@ -15,8 +15,10 @@
 <script>
 import { remote, app } from 'electron'
 import path from 'path'
+import { mapMutations, mapGetters } from 'vuex'
+
 export default {
-  name: 'ommon',
+  name: 'Common',
   data () {
     return {
       checked: false,
@@ -24,14 +26,20 @@ export default {
       defaultPath: ''
     }
   },
+  computed: {
+    ...mapGetters(['autoCopy'])
+  },
   mounted () {
+    this.checked = this.autoCopy
     this.userDataPath = this.getUserDataPath()
 
     this.defaultPath = path.join(this.userDataPath, '/commons')
   },
   methods: {
+    ...mapMutations('setting', ['TOGGLE_AUTO_COPY']),
     toggleCheck () {
       this.checked = !this.checked
+      this.TOGGLE_AUTO_COPY(this.checked)
     },
     getUserDataPath () {
       const APP = process.type === 'renderer' ? remote.app : app
@@ -48,6 +56,7 @@ export default {
   }
   .check-item {
     cursor: pointer;
+    padding-top: 10px;
   }
   // 原始样式
   .ant-checkbox {

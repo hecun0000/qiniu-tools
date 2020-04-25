@@ -15,11 +15,22 @@
     </div>
     <div class="preview">
       <div class="cilp-box">
-        <img id="image" :src="url" alt="picture" :class="{'hidden':!croppable}" class="picture" />
+        <span class="no-imgs" v-show="!url">
+          <span class="no-imgs-text">
+            请选择图片
+          </span>
+        </span>
+        <img id="image" v-show="url" :src="url" alt="picture" :class="{'hidden':!croppable}" class="picture" />
       </div>
       <div class="show">
         <span class="span-title">裁剪预览</span>
-        <div class="show-1 img-preview" :class="{'circle': isCircle}"></div>
+
+        <span class="no-imgs" v-show="!url">
+          <span class="no-imgs-text">
+            请选择图片
+          </span>
+        </span>
+        <div v-show="url" class="show-1 img-preview" :class="{'circle': isCircle}"></div>
       </div>
     </div>
     <div class="operation-box">
@@ -31,7 +42,7 @@
         <span class="btn-item btn-reset" title="重置" @click="reset"></span>
         <!--裁剪质量-->
         <!-- 圆形裁剪 -->
-        <span class="btn-item" @click="circle">圆形</span>
+        <!-- <span class="btn-item" @click="circle">圆形</span> -->
       </div>
       <div class="picture-quality">
         <span class="label">压缩等级：</span>
@@ -60,6 +71,7 @@ import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
 import { copyNotice } from '@/utils/copy'
 import { uploadQiniu } from '@/utils/qiniu'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ccc',
@@ -132,6 +144,9 @@ export default {
       return (size / 1024).toFixed(2) + 'kb'
     }
   },
+  computed: {
+    ...mapGetters(['autoCopy'])
+  },
   methods: {
     // 文件改变
     handleFileChange (event) {
@@ -162,6 +177,7 @@ export default {
       const files = new File([file], name, { type: file.type, lastModified: Date.now() })
       console.log(files, 'dddd')
       const res = await uploadQiniu([files])
+      if (!this.autoCopy) return
       copyNotice(res, 'url')
     },
     // 初始化这个裁剪框
@@ -312,6 +328,8 @@ export default {
   border: 1px solid #eee;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-box {
@@ -429,7 +447,7 @@ export default {
 }
 
 .file-box {
-  margin: 36px 24px 40px;
+  margin: 36px 24px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -474,7 +492,27 @@ export default {
       opacity: 0.85;
     }
   }
+
 }
+.no-imgs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #a9a9a9;
+    transition: border-color .3s;
+    color: $menu-default-color;
+    transition: all .3s linear;
+    flex: 1;
+    border-radius: 4px;
+    min-height: 300px;
+    &:hover {
+      border-color: $main-color;
+      color: $main-color;
+    }
+    .no-imgs-text {
+      font-size: 12px;
+    }
+  }
 </style>
 
 <style lang="scss">

@@ -2,15 +2,20 @@
     <div class="fall">
       <div class="fall-column" v-for="(column, idx) in allBox" :key="idx">
         <div class="fall-column-item" v-for="(item, i) in column" :key="i">
-          <img class="fall-column-item-img" :src="item.src" />
+          <!-- <img class="fall-column-item-img" :src="item.src" /> -->
+          <display-img :data="item"/>
         </div>
       </div>
   </div>
 </template>
 
 <script>
+import DisplayImg from './DisplayImg'
 export default {
   name: 'water',
+  components: {
+    DisplayImg
+  },
   data () {
     return {
       list: [],
@@ -39,6 +44,10 @@ export default {
   watch: {
     imgList: {
       async handler () {
+        this.waterfallList = []
+        this.waterfallDeviationHeight = []
+        this.heightArr = []
+        this.allBox = []
         await this.initData()
         console.log(this.allBox, 'all')
         console.log(this.heightArr, 'arr')
@@ -104,7 +113,6 @@ export default {
 .fall-column ~ .fall-column {
   margin-left: 10px;
 }
-
 .fall-column-item {
   position: relative;
   line-height: 0;
@@ -121,6 +129,6 @@ export default {
   }
 }
 .fall-column-item ~ .fall-column-item {
-    margin-top: 10px;
-  }
+  margin-top: 10px;
+}
 </style>

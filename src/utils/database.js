@@ -29,7 +29,7 @@ class Db {
       this.db.set('setting.qiniu', {
         accessKey: 'HzPKzILsKZACzI12Bi-KTONKcoR5X2KyN03HbCLo',
         secretKey: 'k84p2iDti4t6MB1DIsy1MMPTttdl18Ws7NkfHmDb',
-        domain: 'https://img.hecun.site',
+        domain: 'http://static.hecun.site/',
         bucket: 'hecun'
       }).write()
     }

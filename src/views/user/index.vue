@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="img-container">
-      <water-fall :imgList='displayList' v-if="reload"/>
+      <water-fall :imgList='displayList'/>
     </div>
   </div>
 </template>
@@ -41,24 +41,20 @@ export default {
       const originData = getImgList()
       this.imgList = deepCopy(originData)
       this.displayList = deepCopy(originData)
-      // console.log(this.displayList)
-      // copyPath(this.displayList, 'markdown')
-      // let option = {
-      //   title: '你订阅的《海贼王》更新了',
-      //   body: '《海贼王》已更新至第852集 激斗开幕 路飞VS卡塔库栗',
-      //   icon: '../static/hhw.ico',
-      //   href: 'https://www.iqiyi.com/v_19rqz6uit0.html'
-      // }
-      // let notice = notification(option, true)
-      // console.log(notice)
     },
     async filterData () {
       this.reload = false
+
       this.displayList = this.imgList.filter(item => {
-        return item.fileName.indexOf(this.qeury) > -1
+        const qeury = this.qeury.toLowerCase()
+        const fileName = item.fileName.toLowerCase()
+        return fileName.indexOf(qeury) > -1
       })
+      console.log(this.displayList, 'ddddddd')
+
       await this.$nextTick()
       this.reload = true
+
       console.log(this.displayList, 'this.displayList')
     }
   }
@@ -124,7 +120,7 @@ export default {
   background: $menu-default-color;
   height: 40px;
   width: 40px;
-  color: $menu-active-color;
+  color: #fff;
   opacity: 0;
   font-size: 10pt;
   transition: all 0.55s ease;
