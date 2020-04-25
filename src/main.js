@@ -6,13 +6,9 @@ import filters from './filters'
 import './control'
 import './components'
 import './assets/icons'
-import './plugins/element'
 import './styles/index.scss' // global css
 
 import CreateDb from './utils/database'
-import { getQiniuToken } from './utils/qiniu'
-
-console.log(getQiniuToken(), 'getQiniuToken')
 
 Vue.prototype.database = CreateDb.getDb()
 

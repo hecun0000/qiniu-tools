@@ -39,6 +39,7 @@ export default {
   methods: {
     getImgAll () {
       const originData = getImgList()
+      console.log(originData)
       this.imgList = deepCopy(originData)
       this.displayList = deepCopy(originData)
     },

@@ -15,12 +15,10 @@
     </div>
     <div class="preview">
       <div class="cilp-box">
-        <span class="no-imgs" v-show="!url">
-          <span class="no-imgs-text">
-            请选择图片
-          </span>
-        </span>
-        <img id="image" v-show="url" :src="url" alt="picture" :class="{'hidden':!croppable}" class="picture" />
+        <img id="image" :src="url" v-show="url" :class="{'hidden':!croppable}" class="picture" />
+        <div v-show="!url" class="no-select-data">
+          请先选择图片
+        </div>
       </div>
       <div class="show">
         <span class="span-title">裁剪预览</span>
@@ -72,9 +70,15 @@ import Cropper from 'cropperjs'
 import { copyNotice } from '@/utils/copy'
 import { uploadQiniu } from '@/utils/qiniu'
 import { mapGetters } from 'vuex'
+import { Select,
+  Option } from 'element-ui'
 
 export default {
   name: 'ccc',
+  components: {
+    ElSelect: Select,
+    ElOption: Option
+  },
   props: {
     uploadDialog: {
       type: Object,
@@ -379,6 +383,8 @@ export default {
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center;
+  line-height: 32px;
+  text-align: center;
 }
 
 .operation .btn-item:hover {
@@ -513,6 +519,12 @@ export default {
       font-size: 12px;
     }
   }
+
+.no-select-data {
+  text-align: center;
+  padding: 100px 0;
+  border: 1px solid $main-color;
+}
 </style>
 
 <style lang="scss">

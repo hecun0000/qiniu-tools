@@ -1,5 +1,5 @@
 const state = {
-  autoCopy: false
+  autoCopy: true
 }
 
 const mutations = {

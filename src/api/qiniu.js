@@ -8,7 +8,6 @@ export function getToken () {
 }
 
 export function qiniuUpload ({ keyname, data, upToken }) {
-  console.log('', { keyname, data, upToken })
   return request.common({
     url: qiNiuUrl + 'key/' + keyname,
     method: 'post',

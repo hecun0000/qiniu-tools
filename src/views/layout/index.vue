@@ -4,7 +4,9 @@
     <div class="h-main">
       <h-top-bar></h-top-bar>
       <div class="app-main">
-        <router-view></router-view>
+        <!-- <transition name="fade"> -->
+          <router-view></router-view>
+        <!-- </transition> -->
       </div>
     </div>
   </div>

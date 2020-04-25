@@ -27,11 +27,11 @@ export default {
         name: 'common',
         component: 'Common'
       },
-      {
-        text: '设置下载目录',
-        name: 'download',
-        component: 'Download'
-      },
+      // {
+      //   text: '设置下载目录',
+      //   name: 'download',
+      //   component: 'Download'
+      // },
       {
         text: '关于作者',
         name: 'about',
