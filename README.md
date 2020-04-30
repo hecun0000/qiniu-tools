@@ -9,7 +9,7 @@
 
 ## Interface
 
-[](http://static.hecun.site/hecun158823696409711.png)
+![](http://static.hecun.site/hecun158823696409711.png)
 
 ## Install
 
